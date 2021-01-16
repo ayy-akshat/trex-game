@@ -81,6 +81,11 @@ function draw() {
     ground.velocityX = -(6 + 3*score/100);
     obstaclesGroup.setVelocityXEach(ground.velocityX);
 
+    if (trex.y > invisibleGround.y)
+    {
+      trex.y = invisibleGround.y - trex.height/2;
+    }
+
     if (score > highscore)
     {
       highscore = score;
@@ -155,7 +160,7 @@ function spawnClouds() {
 
 function spawnObstacles() {
   if(frameCount % 100 === 0) {
-    var obstacle = createSprite(width*1.1,ground.y-(windowHeight/35),10,40);
+    var obstacle = createSprite(width*1.1,ground.y-(windowHeight*0.02),10,40);
     //obstacle.debug = true;
     obstacle.velocityX = -(6 + 3*score/100);
     
