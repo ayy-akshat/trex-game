@@ -52,9 +52,13 @@ function setup() {
   
   gameOver = createSprite(width/2,height/2);
   gameOver.addImage(gameOverImg);
+
+  gameOver.scale = (windowWidth+windowHeight)/2000;
   
   restart = createSprite(width/2,height*0.6);
   restart.addImage(restartImg);
+
+  restart.scale = (windowWidth+windowHeight)/2000;
 
   gameOver.visible = false;
   restart.visible = false;
@@ -92,7 +96,7 @@ function draw() {
     }
   
     if((touches.length > 0 || keyDown("space") || keyDown("up")) && trex.collide(invisibleGround)) {
-      trex.velocityY = -(windowHeight)/60;
+      trex.velocityY = -(windowHeight+windowWidth)/150;
       touches = [];
     }
   
