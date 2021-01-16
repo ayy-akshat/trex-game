@@ -41,6 +41,8 @@ function setup() {
   
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
+
+  trex.scale = (windowWidth+windowHeight)/4000;
   
   ground = createSprite(windowWidth/2,windowHeight*0.8,width,20);
   ground.addImage("ground",groundImage);
@@ -85,7 +87,7 @@ function draw() {
     }
   
     if((touches.length > 0 || keyDown("space") || keyDown("up")) && trex.collide(invisibleGround)) {
-      trex.velocityY = -15;
+      trex.velocityY = -(windowHeight)/60;
       touches = [];
     }
   
@@ -120,7 +122,7 @@ function draw() {
     obstaclesGroup.setLifetimeEach(-1);
     cloudsGroup.setLifetimeEach(-1);
     
-    if(mousePressedOver(restart) || keyWentDown("space") || keyWentDown("up") || touches.length > 0) {
+    if(mousePressedOver(restart) || keyDown("space") || keyDown("up") || touches.length > 0) {
       reset();
       touches = [];
     }
@@ -176,6 +178,7 @@ function spawnObstacles() {
     }
     
     //assign scale and lifetime to the obstacle
+    obstacle.scale = (windowWidth+windowHeight)/4000;
     obstacle.lifetime = 300;
     //add each obstacle to the group
     obstaclesGroup.add(obstacle);
